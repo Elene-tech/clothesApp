@@ -3,7 +3,11 @@ import clsx from 'clsx';
 
 const Button = (props) => {
   return (
-    <button type={props.type} className={clsx(styles.button, props.className)}>
+    <button
+      type={props.type}
+      onClick={props.onClick}
+      className={clsx(styles.button, props.className)}
+    >
       {props.children}
     </button>
   );

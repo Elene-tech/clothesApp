@@ -36,6 +36,9 @@ const Product = (props) => {
                 <li key={size.name}>
                   <Button
                     type="button"
+                    onClick={() => {
+                      setCurrentSize(size.name);
+                    }}
                     className={clsx(size.name === currentSize && styles.active)}
                   >
                     {size.name}
@@ -51,6 +54,9 @@ const Product = (props) => {
                 <li key={item}>
                   <Button
                     type="button"
+                    onClick={() => {
+                      setCurrentColor(item);
+                    }}
                     className={clsx(
                       prepareColorClassName(item),
                       item === props.currentColor && styles.active
