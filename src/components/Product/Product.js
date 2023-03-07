@@ -8,11 +8,18 @@ const Product = (props) => {
   const [currentColor, setCurrentColor] = useState(props.colors[0]);
   const [currentSize, setCurrentSize] = useState(props.sizes[0].name);
 
-  const prepareColorClassName = (color) => {
+  const getPrice = () => {
+    const foundSize = props.sizes.find(
+      (element) => element.name === currentSize
+    );
+    return props.basePrice + foundSize.additionalPrice;
+  };
+
+  function prepareColorClassName(color) {
     return styles[
       'color' + color[0].toUpperCase() + color.substr(1).toLowerCase()
     ];
-  };
+  }
 
   return (
     <article className={styles.product}>
@@ -26,7 +33,7 @@ const Product = (props) => {
       <div>
         <header>
           <h2 className={styles.name}>{props.title}</h2>
-          <span className={styles.price}>{props.price}</span>
+          <span className={styles.price}>Price:{getPrice()}$</span>
         </header>
         <form>
           <div className={styles.sizes}>
