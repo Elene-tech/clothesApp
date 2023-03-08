@@ -1,7 +1,7 @@
 import styles from './ProductForm.module.scss';
-import clsx from 'clsx';
 import Button from '../Button/Button';
 import OptionColors from '../OptionColors/OptionColors';
+import OptionSize from '../OptionSize/OptionSize';
 
 const ProductForm = ({
   setCurrentSize,
@@ -14,24 +14,11 @@ const ProductForm = ({
 }) => {
   return (
     <form>
-      <div className={styles.sizes}>
-        <h3 className={styles.optionLabel}>Sizes</h3>
-        <ul className={styles.choices}>
-          {sizes.map((size) => (
-            <li key={size.name}>
-              <Button
-                type="button"
-                onClick={() => {
-                  setCurrentSize(size.name);
-                }}
-                className={clsx(size.name === currentSize && styles.active)}
-              >
-                {size.name}
-              </Button>
-            </li>
-          ))}
-        </ul>
-      </div>
+      <OptionSize
+        sizes={sizes}
+        setCurrentSize={setCurrentSize}
+        currentSize={currentSize}
+      />
       <OptionColors
         colors={colors}
         setCurrentColor={setCurrentColor}
