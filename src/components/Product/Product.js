@@ -29,8 +29,8 @@ const Product = (props) => {
 
   return (
     <article className={styles.product}>
+      <ProductImage name={props.name} color={currentColor} />
       <div>
-        <ProductImage name={props.name} color={currentColor} />
         <header>
           <h2 className={styles.name}>{props.title}</h2>
           <span className={styles.price}>Price:{getPrice()}$</span>
