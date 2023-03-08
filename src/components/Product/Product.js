@@ -1,25 +1,30 @@
 import styles from './Product.module.scss';
 import ProductImage from '../ProductImage/ProductImage';
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import ProductForm from '../ProductForm/ProductForm';
 
 const Product = (props) => {
   const [currentColor, setCurrentColor] = useState(props.colors[0]);
   const [currentSize, setCurrentSize] = useState(props.sizes[0].name);
+  const [currentSizePrice, setCurrentSizePrice] = useState(
+    props.sizes[0].additionalPrice
+  );
 
-  const getPrice = () => {
-    const foundSize = props.sizes.find(
-      (element) => element.name === currentSize
-    );
-    return props.basePrice + foundSize.additionalPrice;
-  };
+  function getTotalPrice(a, b) {
+    return a + b;
+  }
+
+  const getPrice = useMemo(
+    () => getTotalPrice(props.basePrice, currentSizePrice),
+    [props.basePrice, currentSizePrice]
+  );
 
   const clickHandler = (event) => {
     event.preventDefault();
 
     const generalSummary = {
       name: props.title,
-      price: getPrice(),
+      price: getPrice,
       size: currentSize,
       color: currentColor,
     };
@@ -33,7 +38,7 @@ const Product = (props) => {
       <div>
         <header>
           <h2 className={styles.name}>{props.title}</h2>
-          <span className={styles.price}>Price:{getPrice()}$</span>
+          <span className={styles.price}>Price:{getPrice}$</span>
         </header>
         <ProductForm
           setCurrentColor={setCurrentColor}
@@ -43,6 +48,7 @@ const Product = (props) => {
           colors={props.colors}
           clickHandler={clickHandler}
           sizes={props.sizes}
+          setCurrentSizePrice={setCurrentSizePrice}
         />
       </div>
     </article>

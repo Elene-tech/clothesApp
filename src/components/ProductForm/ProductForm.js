@@ -11,6 +11,8 @@ const ProductForm = ({
   colors,
   clickHandler,
   sizes,
+  setCurrentSizePrice,
+  currentSizePrice,
 }) => {
   return (
     <form>
@@ -18,6 +20,8 @@ const ProductForm = ({
         sizes={sizes}
         setCurrentSize={setCurrentSize}
         currentSize={currentSize}
+        setCurrentSizePrice={setCurrentSizePrice}
+        currentSizePrice={currentSizePrice}
       />
       <OptionColors
         colors={colors}
