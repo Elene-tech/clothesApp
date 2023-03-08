@@ -1,6 +1,5 @@
 import styles from './Product.module.scss';
-
-import Button from '../Button/Button';
+import ProductImage from '../ProductImage/ProductImage';
 import { useState } from 'react';
 import ProductForm from '../ProductForm/ProductForm';
 
@@ -30,14 +29,8 @@ const Product = (props) => {
 
   return (
     <article className={styles.product}>
-      <div className={styles.imageContainer}>
-        <img
-          className={styles.image}
-          alt={props.title}
-          src={`${process.env.PUBLIC_URL}/images/products/shirt-${props.name}--${currentColor}.jpg`}
-        />
-      </div>
       <div>
+        <ProductImage name={props.name} color={currentColor} />
         <header>
           <h2 className={styles.name}>{props.title}</h2>
           <span className={styles.price}>Price:{getPrice()}$</span>
