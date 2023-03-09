@@ -49,6 +49,8 @@ const Product = (props) => {
           clickHandler={clickHandler}
           sizes={props.sizes}
           setCurrentSizePrice={setCurrentSizePrice}
+          currentSizePrice={currentSizePrice}
+          onClick={props.onClick}
         />
       </div>
     </article>

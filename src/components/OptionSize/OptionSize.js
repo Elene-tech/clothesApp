@@ -2,7 +2,12 @@ import styles from './OptionSize.module.scss';
 import Button from '../Button/Button';
 import clsx from 'clsx';
 
-const OptionSize = ({ sizes, setCurrentSize, currentSize }) => {
+const OptionSize = ({
+  sizes,
+  setCurrentSize,
+  currentSize,
+  setCurrentSizePrice,
+}) => {
   return (
     <div className={styles.sizes}>
       <h3 className={styles.optionLabel}>Sizes</h3>
@@ -13,6 +18,7 @@ const OptionSize = ({ sizes, setCurrentSize, currentSize }) => {
               type="button"
               onClick={() => {
                 setCurrentSize(size.name);
+                setCurrentSizePrice(size.additionalPrice);
               }}
               className={clsx(size.name === currentSize && styles.active)}
             >
